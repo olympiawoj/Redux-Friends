@@ -1,5 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Protected = () => <h2>Protected stuff!</h2>;
+const Protected = props => props.friends.map(friend => <p>{friend.name}</p>);
 
-export default Protected;
+const mstp = state => {
+  return { friends: state.friends };
+};
+export default connect(mstp)(Protected);
