@@ -3,7 +3,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   GET_FRIENDS_START,
-  GET_FRIENDS_SUCCESS
+  GET_FRIENDS_SUCCESS,
+  GET_FRIENDS_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -73,7 +74,19 @@ const reducer = (state = initialState, action) => {
         loggingIn: false,
         savingFriends: false,
         updatingFriend: false,
-        error: []
+        error: null
+      };
+
+    case GET_FRIENDS_FAILURE:
+      return {
+        ...state,
+        deletingFriend: false,
+        fetchingFriends: false,
+        friends: [],
+        loggingIn: false,
+        savingFriends: false,
+        updatingFriend: false,
+        error: action.payload
       };
 
     default:

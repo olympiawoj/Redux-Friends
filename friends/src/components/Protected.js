@@ -6,6 +6,8 @@ import { Button, Card, CardHeader, CardText, CardBody } from "reactstrap";
 const Protected = props => (
   <>
     {props.fetchingFriends && <h2>Loading!</h2>}
+    {props.error && <h2>{props.error}</h2>}
+
     {props.friends.map(friend => (
       <Card className="friendCard">
         <CardBody>
@@ -23,6 +25,10 @@ const Protected = props => (
 );
 
 const mstp = state => {
-  return { friends: state.friends, fetchingFriends: state.fetchingFriends };
+  return {
+    friends: state.friends,
+    fetchingFriends: state.fetchingFriends,
+    error: state.error
+  };
 };
 export default connect(mstp)(Protected);

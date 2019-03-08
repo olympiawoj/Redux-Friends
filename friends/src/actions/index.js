@@ -5,6 +5,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const GET_FRIENDS_START = "GET_FRIENDS_START";
 export const GET_FRIENDS_SUCCESS = "GET_FRIENDS_SUCESS";
+export const GET_FRIENDS_FAILURE = "GET_FRIENDS_FAILURE";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -27,7 +28,7 @@ export const login = creds => dispatch => {
 export const getFriends = dispatch => {
   dispatch({ type: GET_FRIENDS_START });
   return axios
-    .get("http://localhost:5000/api/friends", {
+    .get("http://localhost:5000/api/friend", {
       headers: { authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -36,5 +37,10 @@ export const getFriends = dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err.data));
+    .catch(err =>
+      dispatch({
+        type: GET_FRIENDS_FAILURE,
+        payload: "You have an error getting friends"
+      })
+    );
 };
