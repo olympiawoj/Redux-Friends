@@ -16,12 +16,10 @@ export const login = creds => dispatch => {
       getFriends(dispatch);
     })
     .catch(err => {
-      console.log(err =>
-        dispatch({
-          type: LOGIN_FAILURE,
-          payload: "You have an error fetching data"
-        })
-      );
+      dispatch({
+        type: LOGIN_FAILURE,
+        payload: "You have an error fetching data"
+      });
     });
 };
 
@@ -32,11 +30,11 @@ export const getFriends = dispatch => {
     .get("http://localhost:5000/api/friends", {
       headers: { authorization: localStorage.getItem("token") }
     })
-    .then(res =>
+    .then(res => {
       dispatch({
         type: GET_FRIENDS_SUCCESS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err => console.log(err.data));
 };
