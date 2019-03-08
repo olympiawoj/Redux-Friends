@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 
 import rootReducer from "./reducers";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 

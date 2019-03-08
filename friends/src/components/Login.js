@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Form, Button } from "reactstrap";
 
 import { login } from "../actions";
 
@@ -30,7 +31,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.login}>
+        <Form onSubmit={this.login}>
           <input
             type="text"
             name="username"
@@ -45,8 +46,8 @@ class Login extends React.Component {
             onChange={this.handleChanges}
             placeholder="Password"
           />
-          <button>Log In</button>
-        </form>
+          <Button color="primary">Log In</Button>
+        </Form>
       </div>
     );
   }
