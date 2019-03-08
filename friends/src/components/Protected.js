@@ -1,13 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Button, Card, CardHeader, CardText, CardBody } from "reactstrap";
+import { Card, CardHeader, CardText, CardBody } from "reactstrap";
+
+import FriendForm from "./FriendForm";
 
 const Protected = props => (
   <>
     {props.fetchingFriends && <h2>Loading!</h2>}
     {props.error && <h2>{props.error}</h2>}
-
+    <FriendForm />
     {props.friends.map(friend => (
       <Card className="friendCard">
         <CardBody>
@@ -17,10 +19,6 @@ const Protected = props => (
         </CardBody>
       </Card>
     ))}
-    <input name="name" type="text" placeholder="Name" />
-    <input name="age" type="number" placeholder="Age" />
-    <input name="email" type="email" placeholder="Email" />
-    <Button color="primary">Add Friend</Button>
   </>
 );
 

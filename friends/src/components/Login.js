@@ -8,7 +8,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: props.error,
+      //   error: props.error,
       credentials: {
         username: "",
         password: ""
@@ -34,7 +34,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        {this.state.error && <h2>FAILURE logging in</h2>}
+        {/* {this.state.error && <h2>FAILURE logging in</h2>} */}
         <Form onSubmit={this.login}>
           <input
             type="text"
