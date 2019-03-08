@@ -6,6 +6,8 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const GET_FRIENDS_START = "GET_FRIENDS_START";
 export const GET_FRIENDS_SUCCESS = "GET_FRIENDS_SUCESS";
 export const GET_FRIENDS_FAILURE = "GET_FRIENDS_FAILURE";
+export const ADD_FRIENDS_START = "ADD_FRIENDS_START";
+export const ADD_FRIENDS_SUCCESS = "ADD_FRIENDS_SUCCESS";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -19,7 +21,7 @@ export const login = creds => dispatch => {
     .catch(err => {
       dispatch({
         type: LOGIN_FAILURE,
-        payload: "You have an error fetching data"
+        payload: "You have an error logging in"
       });
     });
 };
@@ -28,7 +30,7 @@ export const login = creds => dispatch => {
 export const getFriends = dispatch => {
   dispatch({ type: GET_FRIENDS_START });
   return axios
-    .get("http://localhost:5000/api/friend", {
+    .get("http://localhost:5000/api/friends", {
       headers: { authorization: localStorage.getItem("token") }
     })
     .then(res => {
@@ -43,4 +45,16 @@ export const getFriends = dispatch => {
         payload: "You have an error getting friends"
       })
     );
+};
+
+//Axios post request to add friend to FriendsList
+
+export const addFriend = (dispatch, friend) => {
+  dispatch({ type: ADD_FRIENDS_START });
+  return axios
+    .post("http://localhost:5000/api/friends", friend, {
+      headers: { authorization: localStorage.getItem("token") }
+    })
+    .then(response => console.log("Resolved", response))
+    .catch(err => console.log("Rejected", err));
 };

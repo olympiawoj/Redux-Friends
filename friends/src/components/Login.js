@@ -5,13 +5,16 @@ import { Form, Button } from "reactstrap";
 import { login } from "../actions";
 
 class Login extends React.Component {
-  state = {
-    credentials: {
-      username: "",
-      password: ""
-    }
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: props.error,
+      credentials: {
+        username: "",
+        password: ""
+      }
+    };
+  }
   handleChanges = e => {
     this.setState({
       credentials: {
@@ -31,6 +34,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
+        {this.state.error && <h2>FAILURE logging in</h2>}
         <Form onSubmit={this.login}>
           <input
             type="text"
@@ -53,7 +57,12 @@ class Login extends React.Component {
   }
 }
 
+const mstp = state => {
+  return {
+    error: state.error
+  };
+};
 export default connect(
-  null,
+  mstp,
   { login }
 )(Login);
